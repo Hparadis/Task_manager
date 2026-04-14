@@ -57,3 +57,8 @@ def delete_task(id):
     return jsonify({
         "error":"task not found"
     }),404
+@task_bp.route("/all",methods=["GET"])
+def get_all_tasks():
+    return jsonify({
+        "tasks":tasks
+    })
