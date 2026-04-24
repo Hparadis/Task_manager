@@ -1,0 +1,97 @@
+/* Reset basic spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full page styling */
+body {
+    height: 100vh;
+    background-color: #0f0f0f;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form container */
+#signupForm {
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+
+    width: 300px;
+    text-align: center;
+}
+
+/* Title */
+#signupForm h2 {
+    margin-bottom: 20px;
+}
+
+/* Labels */
+#signupForm label {
+    display: block;
+    text-align: left;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Inputs */
+#signupForm input {
+    width: 100%;
+    padding: 10px 5px;
+    margin-top: 5px;
+
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+
+    outline: none;
+}
+
+/* Button */
+#signupForm button {
+    margin-top: 25px;
+    padding: 10px;
+    width: 100%;
+
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+/* Button hover */
+#signupForm button:hover {
+    background: white;
+    color: black;
+}
+
+#messageBox {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    background: #222;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: 0.3s;
+}
+
+#messageBox.show {
+    opacity: 1;
+    transform: translateY(0);
+}

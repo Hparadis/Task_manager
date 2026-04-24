@@ -18,7 +18,7 @@ body {
 }
 
 /* Form container */
-#signupForm {
+#loginForm {
     background-color: #1a1a1a;
     padding: 40px;
     border-radius: 12px;
@@ -29,12 +29,12 @@ body {
 }
 
 /* Title */
-#signupForm h2 {
+#loginForm h2 {
     margin-bottom: 20px;
 }
 
 /* Labels */
-#signupForm label {
+#loginForm label {
     display: block;
     text-align: left;
     margin-top: 15px;
@@ -42,7 +42,7 @@ body {
 }
 
 /* Inputs */
-#signupForm input {
+#loginForm input {
     width: 100%;
     padding: 10px 5px;
     margin-top: 5px;
@@ -56,7 +56,7 @@ body {
 }
 
 /* Button */
-#signupForm button {
+#loginForm button {
     margin-top: 25px;
     padding: 10px;
     width: 100%;
@@ -71,7 +71,27 @@ body {
 }
 
 /* Button hover */
-#signupForm button:hover {
+#loginForm button:hover {
     background: white;
     color: black;
+}
+
+#messageBox {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    background: #222;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: 0.3s;
+}
+
+#messageBox.show {
+    opacity: 1;
+    transform: translateY(0);
 }
