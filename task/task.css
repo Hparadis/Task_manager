@@ -1,37 +1,88 @@
-/* GENERAL */
+/* ==========================
+   🌍 GLOBAL
+========================== */
+* {
+    box-sizing: border-box;
+}
+
 body {
+    margin: 0;
     background-color: #0f0f0f;
     color: white;
     font-family: Arial, sans-serif;
+}
+
+/* ==========================
+   🧱 MAIN LAYOUT
+========================== */
+#app {
     display: flex;
-    justify-content: center;
-    margin-top: 50px;
+    min-height: 100vh;
 }
 
-/* CONTAINER */
-#TaskManager {
-    width: 100%;
-    max-width: 800px;
-    padding: 0 16px;
+/* ==========================
+   📌 SIDEBAR (LEFT)
+========================== */
+#sidebar {
+    width: 260px;
+    min-width: 260px;
+    background: #1a1a1a;
+    border-right: 1px solid #2a2a2a;
+    padding: 15px;
+    overflow-y: auto;
 }
 
-/* HEADER */
+/* ==========================
+   📌 MAIN CONTENT (RIGHT)
+========================== */
+#main {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* ==========================
+   🔔 NOTIFICATIONS
+========================== */
+#notifList {
+    margin-top: 10px;
+}
+
+.notif-item {
+    background: #2a2a2a;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notif-item.unread {
+    border-left: 4px solid #facc15;
+}
+
+/* ==========================
+   🧠 HEADER
+========================== */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* BUTTONS (+ and S) */
+/* ==========================
+   🔘 BUTTONS
+========================== */
 .menu-container button {
     background: transparent;
     border: 1px solid white;
     color: white;
-    padding: 15px;
+    padding: 10px 14px;
     margin-left: 8px;
-    border-radius: 15px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: 0.2s;
 }
 
 .menu-container button:hover {
@@ -39,153 +90,39 @@ body {
     color: black;
 }
 
-/* TASK LIST */
+/* ==========================
+   📋 TASK LIST
+========================== */
 #taskList {
     margin-top: 20px;
-}
-
-/* EACH TASK */
-#taskList {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 12px;
 }
-/* INPUT FIELD */
-#taskList textarea {
-    flex: 1;
-    padding: 6px;
-    border: none;
-    border-bottom: 1px solid white;
-    background: transparent;
-    color: white;
-    outline: none;
-}
 
-/* UPDATE BUTTON */
-#taskList button {
-    background: transparent;
-    border: 1px solid white;
-    color: white;
-    padding: 4px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-#taskList button:hover {
-    background: white;
-    color: black;
-}
-
-/* DELETE BUTTON (-) */
-#taskList button:last-child {
-    border-color: red;
-    color: red;
-}
-
-#taskList button:last-child:hover {
-    background: red;
-    color: white;
-}
-.task-input-container {
-    display: flex;
-    gap: 10px;
-    align-items: flex-end;
-    margin-bottom: 12px;
-}
-
-.task-input-container textarea {
-    flex: 1;
-    min-height: 50px;
-    max-height: 120px;
-    padding: 10px 12px;
-
-    font-size: 14px;
-    font-family: inherit;
-
-    border: 1px solid #ddd;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-
-    outline: none;
-    resize: none; /* 🔥 removes ugly resize box */
-
-    background: #fafafa;
-    transition: all 0.2s ease;
-}
-
-.task-input-container textarea:focus {
-    border-color: #4f46e5;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-}
-.task-input-container button {
-    padding: 10px 14px;
-    border: none;
-    border-radius: 10px;
-
-    background: #4f46e5;
-    color: white;
-    font-weight: 500;
-
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.task-input-container button:hover {
-    background: #4338ca;
-}
-
-.task-input-container button:active {
-    transform: scale(0.97);
-}
-
+/* ==========================
+   🧩 TASK CARD
+========================== */
 .task-card {
     background: #1a1a1a;
     border: 1px solid #2a2a2a;
     border-radius: 12px;
     padding: 12px;
-    width: 100%;
-    box-sizing: border-box;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
-
-    transition: 0.2s ease;
-}
-
-.task-card:hover {
-    border-color: #4f46e5;
-    transform: translateY(-2px);
 }
 
 .task-card textarea {
     grid-column: span 2;
-
     background: transparent;
     border: none;
     color: white;
     outline: none;
-    font-size: 14px;
-    resize: none;
-}
-@media (max-width: 480px) {
-    .task-card textarea {
-        font-size: 13px;
-    }
 }
 
-@media (max-width: 400px) {
-    .task-card {
-        grid-template-columns: 1fr;
-    }
-
-    .task-card textarea {
-        grid-column: span 1;
-    }
-}
-.task-card input[type="datetime-local"] {
+.task-card input {
     background: #2a2a2a;
     border: none;
     color: white;
@@ -194,65 +131,100 @@ body {
 }
 
 .task-card button {
-    border: none;
-    border-radius: 6px;
-    padding: 6px;
-    cursor: pointer;
-    font-size: 13px;
-
-    min-height: 36px;
-
     background: #2a2a2a;
+    border: none;
     color: white;
-
-    transition: 0.2s;
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-.task-card button:hover {
-    background: #4f46e5;
-}
-
-.task-card small {
-    color: #888;
-    font-size: 12px;
-}
-
-.task-card .actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-}
+/* ==========================
+   💬 MESSAGE
+========================== */
 #messageBox {
     position: fixed;
     top: 20px;
     right: 20px;
-
     background: #222;
-    color: white;
-    padding: 10px 14px;
+    padding: 10px;
     border-radius: 8px;
-
     opacity: 0;
-    transform: translateY(-10px);
     transition: 0.3s;
 }
 
-#messageBox.show {
-    opacity: 1;
-    transform: translateY(0);
+/* ==========================
+   📱 MOBILE
+========================== */
+#menuToggle {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    color: white;
+    padding: 10px;
 }
 
-/* 🔔 bell active */
-.task-card button:nth-of-type(1) {
-    /* bell */
+/* MOBILE MODE */
+@media (max-width: 768px) {
+
+    #app {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        height: 100%;
+        width: 250px;
+        z-index: 999;
+        transition: 0.3s;
+    }
+
+    #sidebar.active {
+        left: 0;
+    }
+
+    #main {
+        padding: 15px;
+    }
+
+    #taskList {
+        grid-template-columns: 1fr;
+    }
+
+    #menuToggle {
+        display: block;
+    }
 }
 
-/* update */
-.task-card button:nth-of-type(2) {
-    background: #16a34a;
+#notificationToasts {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
 }
 
-/* delete */
-.task-card button:nth-of-type(3) {
-    background: #dc2626;
+.notif-toast {
+    background: #1f2937;
+    color: white;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 220px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
 }

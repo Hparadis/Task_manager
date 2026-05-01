@@ -34,8 +34,8 @@ form.addEventListener("submit", function(event) {
 
         showMessage("Account created!");
 
-        // ✅ redirect safely (no flicker issue)
         window.location.href = "../task/task.html";
+
     })
     .catch(() => {
         showMessage("Signup failed", true);

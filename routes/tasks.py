@@ -80,20 +80,22 @@ def create_task():
 
     return jsonify({"message": "task created successfully"}), 201
 
-
 # ✏️ UPDATE TASK (ONLY OWNER)
 @task_bp.route("/<int:id>", methods=["PUT"])
 @require_auth
 def update_task(id):
     data = request.get_json()
+
     title = data.get("title")
+    due_time = data.get("due_time")
+    reminder = data.get("reminder")
 
     user_id = request.user_id
 
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # 🔒 Ensure user owns the task
+    # 🔒 Ensure ownership
     cursor.execute(
         "SELECT * FROM tasks WHERE id = ? AND user_id = ?",
         (id, user_id)
@@ -102,19 +104,22 @@ def update_task(id):
 
     if not task:
         conn.close()
-        return jsonify({"error": "task not found or not allowed"}), 404
+        return jsonify({"error": "task not found"}), 404
 
-    # ✅ Update
+    # ✅ UPDATE EVERYTHING
     cursor.execute(
-        "UPDATE tasks SET title = ? WHERE id = ? AND user_id = ?",
-        (title, id,request.user_id)
+        """
+        UPDATE tasks 
+        SET title = ?, due_time = ?, reminder = ?
+        WHERE id = ? AND user_id = ?
+        """,
+        (title, due_time, int(reminder), id, user_id)
     )
 
     conn.commit()
     conn.close()
 
-    return jsonify({"message": "task updated successfully"}), 200
-
+    return jsonify({"message": "task updated"}), 200
 
 # ❌ DELETE TASK (ONLY OWNER)
 @task_bp.route("/<int:id>", methods=["DELETE"])

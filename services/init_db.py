@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS tasks (
     user_id INTEGER,
     created_at TEXT,
     due_time TEXT,
-    reminder INTEGER DEFAULT 0
+    reminder INTEGER DEFAULT 0,
+    notified INTEGER DEFAULT 0
 )
 """)
 cursor.execute("""
