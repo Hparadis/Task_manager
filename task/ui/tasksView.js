@@ -18,24 +18,14 @@ export function createInputBox() {
     btn.type = "button";
     btn.textContent = "Add";
 
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", (e) => {
+        e.preventDefault();
         const value = input.value.trim();
         if (!value) return;
 
         // 🔥 EXACT SAME FLOW as before (just routed through actions)
         actions.createTask(value);
 
-        input.value = "";
-        container.remove();
-    });
-    btn.addEventListener("click", (e) => {
-        e.preventDefault(); // 🔥 STOP reload
-    
-        const value = input.value.trim();
-        if (!value) return;
-    
-        actions.createTask(value);
-    
         input.value = "";
         container.remove();
     });

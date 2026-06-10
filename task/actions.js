@@ -21,7 +21,8 @@ export const actions = {
     },
 
     async createTask(title) {
-        const data = await api.createTask(title);
+        const data = await api.saveTask(title);
+
     
         if (!data.task) {
             console.warn("⚠️ Backend didn't return task, reloading from server");
@@ -30,15 +31,16 @@ export const actions = {
             const refreshed = await api.getTasks();
             state.tasks = refreshed.tasks || [];
 
-            
+            console.log("🚨 FALLBACK TRIGGERED");
             return;
         }
     
         const newTask = data.task;
+        console.log("❌ THIS FUNCTION IS RUNNING");
     
-        state.tasks.unshift(newTask);
+        // state.tasks.unshift(newTask);
 
-        addTaskToUI(newTask);
+        // addTaskToUI(newTask);
     
     },
 

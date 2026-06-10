@@ -1,6 +1,6 @@
 // api.js
 import { getToken } from "./utils.js";
-
+console.log("🔑 TOKEN:", getToken());
 const BASE_URL = "http://127.0.0.1:5000";
 
 export const api = {
@@ -16,7 +16,7 @@ export const api = {
         return res.json();
     },
 
-    async createTask(title) {
+    async saveTask(title) {
         const res = await fetch(`${BASE_URL}/tasks/`, {
             method: "POST",
             headers: {
@@ -28,6 +28,7 @@ export const api = {
                 created_at: new Date().toISOString()
             })
         });
+        console.log("🔥 API.createTask CALLED");
 
         if (!res.ok) throw new Error("Failed to create task");
         return res.json();
