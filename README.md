@@ -1,4 +1,4 @@
-# Task Manager
+# Task Manager(LEARNING PROJECT)
 
 A full-stack task management application built with Flask and SQLite.
 
